@@ -38,5 +38,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    
+  // Função para buscar repositórios do GitHub
+    function fetchGitHubRepos() {
+    const githubUsername = "camsste";
+    const githubToken = "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";
 
-});
+    fetch(`https://api.github.com/users/${githubUsername}/repos`, {
+        headers: {
+            Authorization: `token ${githubToken}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Manipule os dados recebidos da API do GitHub aqui
+        console.log(data); // Exemplo de saída dos dados no console
+    })
+    .catch(error => {
+        console.error('Erro ao acessar API do GitHub:', error);
+    });
+}
+
+    // Chame a função para buscar repositórios do GitHub assim que o PWA for carregado
+    fetchGitHubRepos();
